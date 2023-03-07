@@ -133,18 +133,18 @@ int main()
     matrix a(m, n);
     a.input();
     a.display();
-    // a.transpose();
-    // a.trace();
+    a.transpose();
+    a.trace();
 
     matrix b(m, n);
     b.input();
     b.display();
-    // b.transpose();
-    // b.trace();
+    b.transpose();
+    b.trace();
 
-    // matrix c(m,n);
-    // c.add(a,b);
-    // c.display();
+    matrix c(m,n);
+    c.add(a,b);
+    c.display();
 
     matrix d;
     d.mult(a, b);
