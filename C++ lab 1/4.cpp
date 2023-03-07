@@ -40,10 +40,10 @@ class STRING_CAT
     // }
     void compare(STRING_CAT &a, STRING_CAT &b)
     {
-        if (a.name != b.name)
+        if (a.length != b.length)
         {
             cout << a.name << " is not equal to " << b.name << endl;
-            if (a.name > b.name)
+            if (a.length > b.length)
             {
                 cout << a.name << " is greater than " << b.name << endl;
             }
@@ -62,7 +62,12 @@ class STRING_CAT
 };
 int main()
 {
-    STRING_CAT s1("HELLO "), s2("WORLD"), s3;
+    //STRING_CAT s1("HELLO "), s2("WORLD"), s3;
+    
+    char x[50],y[50];
+    cout<<"enter characters x and y ";
+    cin>>x>>y;
+    STRING_CAT s1(x),s2(y),s3;
     s3.join(s1,s2);
     s1.display();
     s2.display();
