@@ -3,9 +3,9 @@ using namespace std;
 class bankTrans
 {
     private:
-    string cust_name;
+    char cust_name[50];
     int acc_no;
-    string acc_type;
+    char acc_type[50];
     int balance;
 
     public:
