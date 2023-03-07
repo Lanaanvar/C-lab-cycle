@@ -1,137 +1,153 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 class matrix
 {
     int **p;
-    int r,c;
+    int r, c;
 
-    public:
+public:
     matrix(){};
     matrix(int, int);
     void input();
     void display();
-    void add(matrix ,matrix);
+    void add(matrix, matrix);
     void transpose();
     void trace();
-    //void mult(matrix, matrix);
+    void mult(matrix &, matrix &);
 };
 matrix::matrix(int x, int y)
 {
-    for(int i=1; i<=x; i++)
+    for (int i = 1; i <= x; i++)
     {
-        r=x;
-        c=y;
+        r = x;
+        c = y;
 
-        p=new int *[r];
+        p = new int *[r];
 
-        for (int i=0; i<r; i++)
+        for (int i = 0; i < r; i++)
         {
-            p[i]= new int [c];
+            p[i] = new int[c];
         }
     }
-
 }
 void matrix::input()
 {
-    cout<<"enter the values row by row : ";
+    cout << "enter the values row by row : ";
 
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        for (int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cin>>p[i][j];
+            cin >> p[i][j];
         }
     }
 }
 void matrix::display()
 {
-    cout<<" the matrix : "<<"\n";
+    cout << " the matrix : "
+         << "\n";
 
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cout<<p[i][j]<<" ";
+            cout << p[i][j] << " ";
         }
-        cout<<"\n";
+        cout << "\n";
     }
 }
 void matrix::add(matrix m1, matrix m2)
 {
 
-    cout<<"\nThe added matrix is : "<<"\n";
-    for(int i=0; i<r; i++)
+    cout << "\nThe added matrix is : "
+         << "\n";
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cout<<m1.p[i][j]+m2.p[i][j]<<" ";
+            cout << m1.p[i][j] + m2.p[i][j] << " ";
         }
-        cout<<"\n";
+        cout << "\n";
     }
 }
 void matrix::transpose()
 {
-    cout<<"\nThe transpose of a matrix is : "<<"\n";
-    for(int i=0; i<r; i++)
+    cout << "\nThe transpose of a matrix is : "
+         << "\n";
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cout<<p[j][i]<<" ";
+            cout << p[j][i] << " ";
         }
-        cout<<"\n";
+        cout << "\n";
     }
 }
 void matrix::trace()
 {
-    int sum=0;
-    for(int i=0; i<r; i++)
+    int sum = 0;
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            if(i==j)
+            if (i == j)
             {
-                sum+=p[i][j];
+                sum += p[i][j];
             }
         }
     }
-    cout<<"The trace of the matrix is : "<<sum<<"\n";
+    cout << "The trace of the matrix is : " << sum << "\n";
 }
-// void matrix::mult(matrix m1, matrix m2)
-// {
-//     for(int i=0; i<r; i++)
-//     {
-//         for(int j=0; j<c; j++)
-//         {
-//             cout<<m1.p[i][j]*m2.p[i][j]<<" ";
-//         }
-//         cout<<"\n";
-//     }
-// }
+void matrix::mult(matrix &m1, matrix &m2)
+{
+    cout << "\nThe product matrix is : "
+         << "\n";
+    if (m1.c == m2.r)
+    {
+        for (int i = 0; i < m1.r; i++)
+        {
+            for (int j = 0; j < m2.c; j++)
+            {
+                int sum = 0;
+                for (int k = 0; k < m1.c; k++)
+                {
+                    sum += m1.p[i][k] * m2.p[k][j];
+                }
+                cout << sum << " ";
+            }
+
+            cout << "\n";
+        }
+    }
+    else
+    {
+        cout << "the number of rows and columns do not satisfy the matrix multiplication condition ";
+    }
+}
 int main()
 {
 
-    int m,n;
-    cout<<"enter no. of rows and columns ";
-    cin>>m>>n;
-    matrix a(m,n);
+    int m, n;
+    cout << "enter no. of rows and columns ";
+    cin >> m >> n;
+    matrix a(m, n);
     a.input();
     a.display();
-    a.transpose();
-    a.trace();
+    // a.transpose();
+    // a.trace();
 
-    matrix b(m,n);
+    matrix b(m, n);
     b.input();
     b.display();
-    b.transpose();
-    b.trace();
+    // b.transpose();
+    // b.trace();
 
-    matrix c(m,n);
-    c.add(a,b);
-    //c.display();
+    // matrix c(m,n);
+    // c.add(a,b);
+    // c.display();
+
+    matrix d;
+    d.mult(a, b);
+
     return 0;
-
-    // matrix a(m,n);
-    // a.input();
-    // a.display();
-    // return 0;
 }
