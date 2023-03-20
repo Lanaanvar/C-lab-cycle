@@ -12,6 +12,10 @@ class A
     {
         a=x;
     }
+    void show()
+    {
+        cout<<"a = "<<a<<"\n";
+    }
 };
 class B
 {
@@ -23,6 +27,10 @@ class B
     B(int y)
     {
         b=y;
+    }
+    void show()
+    {
+        cout<<"b = "<<b<<"\n";
     }
 };
 class C: private A, private B
@@ -40,12 +48,14 @@ class C: private A, private B
     void add()
     {
         c=a+b;
+        //cout<<"the value of c is : "<<c;
+    }
+    void display()
+    {
+        A::show();
+        B::show();
         cout<<"the value of c is : "<<c;
     }
-    // void display()
-    // {
-    //     cout<<"the value of c is : "<<c;
-    // }
 };
 int main()
 {
@@ -57,7 +67,7 @@ int main()
 
     C r(m,n);
     r.add();
-    //r.display();
+    r.display();
 
     return 0;
 
