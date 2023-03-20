@@ -31,10 +31,10 @@ class C: private A, private B
     int c;
 
     public:
-    C(int x, int y)
+    C(int x, int y):
+        A(x), B(y)
     {
-        A(x);
-        B(y);
+        
         c=0;
     }
     void add()
@@ -49,14 +49,13 @@ class C: private A, private B
 };
 int main()
 {
-    int x,y;
+    int m;
+    int n;
 
     cout<<"enter values for a and b : ";
-    cin>>x>>y;
+    cin>>m>>n;
 
-    A p(x);
-    B q(y);
-    C r(x,y);
+    C r(m,n);
     r.add();
     //r.display();
 

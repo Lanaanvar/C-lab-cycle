@@ -74,9 +74,9 @@ void matrix::transpose()
 {
     cout << "\nThe transpose of a matrix is : "
          << "\n";
-    for (int i = 0; i < r; i++)
+    for (int i = 0; i < c; i++)
     {
-        for (int j = 0; j < c; j++)
+        for (int j = 0; j < r; j++)
         {
             cout << p[j][i] << " ";
         }
@@ -85,18 +85,26 @@ void matrix::transpose()
 }
 void matrix::trace()
 {
-    int sum = 0;
-    for (int i = 0; i < r; i++)
+    if(r==c)
     {
-        for (int j = 0; j < c; j++)
+        int sum = 0;
+        for (int i = 0; i < r; i++)
         {
-            if (i == j)
+            for (int j = 0; j < c; j++)
             {
-                sum += p[i][j];
+                if (i == j)
+                {
+                    sum += p[i][j];
+                }
             }
         }
+        cout << "The trace of the matrix is : " << sum << "\n";
     }
-    cout << "The trace of the matrix is : " << sum << "\n";
+    else
+    {
+        cout<<"the given matrix is not square matrix "<<"\n";
+    }
+    
 }
 void matrix::mult(matrix &m1, matrix &m2)
 {
@@ -144,7 +152,7 @@ int main()
 
     matrix c(m,n);
     c.add(a,b);
-    c.display();
+    //c.display();
 
     matrix d;
     d.mult(a, b);
