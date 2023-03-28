@@ -7,10 +7,7 @@ protected:
     float a, b;
 
 public:
-    virtual void display()
-    {
-        cout << "It is the total surface area of the shape";
-    }
+    virtual void display() = 0;
 };
 
 class circle : public shapes
