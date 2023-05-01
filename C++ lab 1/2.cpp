@@ -2,57 +2,78 @@
 #include<cmath>
 using namespace std;
 
-double area(double r);
-int area(int l, int b);
-int area(int a);
-int area(int a,int b,int c);
-double area(int a, int b, double h);
-
-int main()
+class shapes
 {
-    int a,b,c;
-    float r,h;
+    public:
+    double area(double r);
+    int area(int l, int b);
+    int area(int a);
+    int area(int a,int b,int c);
+    double area(int a, int b, double h);
+};
 
-    cout<<"enter side of triangle ";
-    cin>>a>>b>>c;
-    cout<<"\nenter side of square ";
-    cin>>a;
-    cout<<"\nenter radius of circle ";
-    cin>>r;
-    cout<<"\nenter length and breadth of rectangle ";
-    cin>>a>>b;
-    cout<<"\nenter length of parallel sides and height of trapezium ";
-    cin>>a>>b>>h;
-
-
-    cout<<"area of a triangle= "<<area(a,b,c)<<"\n";
-    cout<<"area of square= "<<area(a)<<"\n";
-    cout<<"area of circle= "<<area(r)<<"\n";
-    cout<<"area of rectangle= "<<area(a,b)<<"\n";
-    cout<<"area of trapezium= "<<area(a,b,h);
-
-    return 0;
-}
-
-double area(double r)
+double shapes::area(double r)
 {
-    return 3.14*r*r;
+    cout<<"area = "<<3.14*r*r<<"\n";
 }
-int area(int l, int b)
+int shapes::area(int l, int b)
 {
-    return int(l*b);
+    cout<<"area = "<<int(l*b)<<"\n";
 }
-int area(int a)
+int shapes::area(int a)
 {
-    return a*a;
+    cout<<"area = "<<a*a<<"\n";
 }
-int area(int a, int b, int c)
+int shapes::area(int a, int b, int c)
 {
     int s= (a+b+c)/2;
 
-    return sqrt(s*(s-a)*(s-b)*(s-c));
+    cout<<"area = "<<sqrt(s*(s-a)*(s-b)*(s-c))<<"\n";
 }
-double area(int a, int b, double h)
+double shapes::area(int a, int b, double h)
 {
-    return float(((a+b)*h)/2);
+    cout<<"area = "<<float(((a+b)*h)/2)<<"\n";
+}
+
+int main()
+{
+    shapes s1;
+    int x,a,b,c,h; double r;
+     do
+     {
+        cout<<"select shape to find area : "<<"\n";
+        cout<<"1. square "<<"\n";
+        cout<<"2. trapezium"<<"\n";
+        cout<<"3. triangle"<<"\n";
+        cout<<"4. rectangle"<<"\n";
+        cout<<"5. circle"<<"\n";
+
+        cout<<"enter the option number: ";
+        cin>>x;
+
+        switch(x)
+        {
+            case 1: cout<<"enter side length : ";
+                    cin>>a;
+                    s1.area(a); break;
+            case 2: cout<<"enter lengths of 2 parallel sides and height respectively : ";
+                    cin>>a>>b>>h;
+                    s1.area(a, b, h); break;
+            case 3: cout<<"enter lengths of 3 sides : ";
+                    cin>>a>>b>>c;
+                    s1.area(a, b, c); break;
+            case 4: cout<<"enter length and breadth : ";
+                    cin>>a>>b;
+                    s1.area(a,b);break;
+            case 5: cout<<"enter radius : ";
+                    cin>>r;
+                    s1.area(r); break;
+
+            default : cout<<"the entered number is invalid "<<"\n"; break;
+        }
+        
+     }
+      while (x>5);
+
+      return 0;
 }

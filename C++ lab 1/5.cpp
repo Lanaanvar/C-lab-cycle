@@ -10,6 +10,7 @@ class matrix
     matrix(int, int);
     void input();
     void display();
+    ~matrix();
 };
 matrix::matrix(int x, int y)
 {
@@ -25,7 +26,7 @@ matrix::matrix(int x, int y)
 }
 void matrix::input()
 {
-    cout<<"enter the values row by row ";
+    cout<<"enter the values row by row "<<"\n";
     for (int i=0; i<d1; i++)
     {
         for (int j=0; j<d2; j++)
@@ -44,6 +45,16 @@ void matrix::display()
         }
         cout<<"\n";
     }
+}
+matrix::~matrix()
+{
+    for (int i=0; i<d1; i++)
+    {
+        delete p[i];
+    }
+    delete p;
+
+    cout<<"memory of the matrix is freed "<<"\n";
 }
 int main()
 {
