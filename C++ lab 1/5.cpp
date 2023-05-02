@@ -14,6 +14,7 @@ class matrix
 };
 matrix::matrix(int x, int y)
 {
+    cout<<"\n matrix object created "<<"\n";
     d1=x;
     d2=y;
 
@@ -34,9 +35,11 @@ void matrix::input()
             cin>>p[i][j];
         }
     }
+    cout<<"\n";
 }
 void matrix::display()
 {
+    cout<<"MATRIX : "<<"\n";
     for (int i=0; i<d1; i++)
     {
         for (int j=0; j<d2; j++)
@@ -54,7 +57,7 @@ matrix::~matrix()
     }
     delete p;
 
-    cout<<"memory of the matrix is freed "<<"\n";
+    cout<<"\nmemory of the matrix is freed "<<"\n\n";
 }
 int main()
 {
