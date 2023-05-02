@@ -31,12 +31,12 @@ istream & operator >>(istream &din, vector&x)
 }
 ostream & operator<< (ostream &dout, vector&x)
 {
-    dout<<"("<<x.v[0];
+    dout<<"<"<<x.v[0];
     for(int i=1; i<3; i++)
     {
         dout<<", "<<x.v[i];
     }
-    dout<<" )"<<"\n";
+    dout<<">"<<"\n";
     return dout;
 }
 int main()

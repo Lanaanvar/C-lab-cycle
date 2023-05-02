@@ -1,91 +1,118 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 class matrix
 {
-    private:
+private:
     int **p;
-    int r,c;
+    int r, c;
 
-    public:
+public:
     matrix(){};
     matrix(int, int);
     void input();
-    matrix add(matrix, matrix);
+    void operator +(matrix &x);
+    void operator *(matrix &);
     void display();
 };
 matrix::matrix(int d1, int d2)
 {
-    r=d1;
-    c=d2;
+    r = d1;
+    c = d2;
 
-    p= new int *[r];
+    p = new int *[r];
 
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        p[r]=new int [c];
+        p[i] = new int[c];
     }
 }
 void matrix::input()
 {
-    cout<<"Enter the values row by row : "<<"\n";
+    cout << "Enter the values row by row : "
+         << "\n";
 
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cin>>p[i][j];
+            cin >> p[i][j];
         }
     }
 }
-matrix matrix::add(matrix x, matrix y)
+void matrix::operator+(matrix &x)
 {
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cout<<x.p[i][j]+y.p[i][j]<<" ";
+            cout << p[i][j] + x.p[i][j] << " ";
         }
 
-        cout<<"\n";
+        cout << "\n";
+    }
+}
+void matrix::operator*(matrix &m2)
+{
+    if (c == m2.r)
+    {
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < m2.c; j++)
+            {
+                int sum = 0;
+                for (int k = 0; k < c; k++)
+                {
+                    sum += p[i][k] * m2.p[k][j];
+                }
+                cout << sum << " ";
+            }
+
+            cout << "\n";
+        }
+    }
+    else
+    {
+        cout << "the number of rows and columns do not satisfy the matrix multiplication condition ";
     }
 }
 void matrix::display()
 {
-    cout<<"the matrix : "<<"\n";
+    cout << "the matrix : "
+         << "\n";
 
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        for(int j=0; j<c; j++)
+        for (int j = 0; j < c; j++)
         {
-            cout<<p[i][j]<<" ";
+            cout << p[i][j] << " ";
         }
 
-        cout<<"\n";
+        cout << "\n";
     }
 }
 
 int main()
 {
-    int d1,d2;
-    cout<<"Enter the number of rows and columns respectively : ";
-    cin>>d1>>d2;
-    matrix m1(d1,d2);
+    int d1, d2, d3, d4;
+    cout << "Enter the number of rows and columns respectively : ";
+    cin >> d1 >> d2;
+    matrix m1(d1, d2);
     m1.input();
     m1.display();
 
-    cout<<"Enter the number of rows and columns respectively : ";
-    cin>>d1>>d2;
-    matrix m2(d1,d2);
+    cout << "Enter the number of rows and columns respectively : ";
+    cin >> d3 >> d4;
+    matrix m2(d3, d4);
     m2.input();
     m2.display();
-
-    matrix m3;
-    m3.add(m1,m2);
-    cout<<"matrix after addition : "<<"\n";
-    m3.display();
-
-
+    
+    cout << "matrix after addition : "
+         << "\n";
+    m1+m2;
+    
+    cout << "\nmatrix after multiplication : "
+         << "\n";
+    m1*m2;
 
     return 0;
-
 }

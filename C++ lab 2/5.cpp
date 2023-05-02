@@ -36,32 +36,50 @@ class B: public A
         cout<<"b = "<<b<<"\n";
     }
 };
-class C: public B
+
+class D
+{
+    private:
+    int d;
+
+    public:
+    D(){};
+    D(int s)
+    {
+        d=s;
+    }
+    void show()
+    {
+        cout<<"d = "<<d<<"\n";
+    }
+};
+class C: public B, public D
 {
     private:
     int c;
 
     public:
     C(){};
-    C(int p, int q, int r):
-    B(p,q)
+    C(int p, int q, int r, int s):
+    B(p,q), D(s)
     {
         c=r;
     }
     void show()
     {
         B::show();
+        D::show();
         cout<<"c = "<<c<<"\n";
     }
 };
 
 int main()
 {
-    int x,y,z;
-    cout<<"enter values for x, y and z ";
-    cin>>x>>y>>z;
+    int x,y,z,w;
+    cout<<"enter values for classes A, B, C, D : ";
+    cin>>x>>y>>z>>w;
 
-    C m(x,y,z);
+    C m(x,y,z,w);
     m.show();
 
     return 0;
